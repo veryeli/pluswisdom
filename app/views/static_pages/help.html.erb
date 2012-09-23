@@ -1,2 +1,6 @@
-<h1>StaticPages#help</h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+<% provide(:title, 'Help') %>
+<h1>Asking For Help</h1>
+<p>
+  Asking for help is the first step.  Without help, you are powerless.
+  No man is an island.  We love you here. <%= yield(:title) %> !
+</p>
