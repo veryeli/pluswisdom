@@ -168,7 +168,7 @@ describe User do
 
       before do
         @user.follow!(followed_user)
-        3.times { followed_user.microposts.create!(content: "Lorem ipsum") }
+        3.times { FactoryGirl.create(:micropost, user: @user) }
       end
       its(:feed) { should include(newer_micropost) }
       its(:feed) { should include(older_micropost) }

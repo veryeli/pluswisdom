@@ -10,7 +10,8 @@ FactoryGirl.define do
     end
   end
     factory :micropost do
-      content "Lorem Ipsum"
+      content "Lorem Ipsum" * 50
+      article_title "Lorem Lorem"
       user
     end
 end
