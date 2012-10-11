@@ -2,6 +2,14 @@ class MicropostsController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user, only: :destroy
 
+  def index
+    if params[:tag]
+      @articles = Article.tagged_with(params[:tag])
+    else
+      @articles = Article.all
+    end
+  end
+
   def destroy
     @micropost.destroy
     redirect_to root_url

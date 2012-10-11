@@ -1,9 +1,11 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :article_title, :content
+  attr_accessible :article_title, :content, :tag_list
   belongs_to :user
+  acts_as_taggable
   validates :user_id, presence: true
   validates :content, presence: true, length: {minimum: 140}
   validates :article_title, presence: true
+
 
 
   default_scope order: 'microposts.created_at DESC'
@@ -14,5 +16,7 @@ class Micropost < ActiveRecord::Base
     where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
           user_id: user.id)
   end
+
+
 
 end
