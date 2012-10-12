@@ -9,6 +9,10 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def explore
+
+  end
+
   def help
   end
 
