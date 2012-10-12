@@ -16,16 +16,17 @@ class MicropostsController < ApplicationController
   end
 
   def edit
-  @micropost = current_user.microposts.build(params[:micropost])
-    if @micropost.save
-      flash[:success] = "Micropost edited!"
-      redirect_to root_url
-    else
-      @feed_items = []
-      render 'static_pages/home'
-    end
   end
 
+  def update
+    @micropost = current_user.microposts.find_by_id(params[:id])
+    if @micropost.update_attributes(params[:micropost])
+      flash[:success] = "Micropost updated"
+      redirect_to root_url
+    else
+      render 'edit'
+    end
+  end
 
   def create
     @micropost = current_user.microposts.build(params[:micropost])
