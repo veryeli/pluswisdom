@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy]
-  before_filter :correct_user, only: :destroy
+  before_filter :signed_in_user, only: [:create, :destroy, :edit]
+  before_filter :correct_user, only: [:destroy, :edit]
 
   def index
     if params[:tag]
@@ -13,6 +13,17 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     redirect_to root_url
+  end
+
+  def edit
+  @micropost = current_user.microposts.build(params[:micropost])
+    if @micropost.save
+      flash[:success] = "Micropost edited!"
+      redirect_to root_url
+    else
+      @feed_items = []
+      render 'static_pages/home'
+    end
   end
 
 

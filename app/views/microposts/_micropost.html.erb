@@ -9,5 +9,6 @@
     <%= link_to "delete", micropost, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: micropost.content %>
+  <%= link_to "edit", edit_micropost_path(micropost) %>
   <% end %>
 </li>

@@ -5,7 +5,7 @@ class Micropost < ActiveRecord::Base
   validates :user_id, presence: true
   validates :content, presence: true, length: {minimum: 140}
   validates :article_title, presence: true
-
+  has_reputation :votes, source: :user, aggregated_by: :sum
 
 
   default_scope order: 'microposts.created_at DESC'
