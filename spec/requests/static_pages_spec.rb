@@ -13,8 +13,8 @@ describe "Static pages" do
    describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        FactoryGirl.create(:micropost, user: user)
-        FactoryGirl.create(:micropost, user: user)
+        FactoryGirl.create(:review, user: user)
+        FactoryGirl.create(:review, user: user)
         sign_in user
         visit root_path
       end

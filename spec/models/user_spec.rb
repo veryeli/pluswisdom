@@ -26,7 +26,7 @@ describe User do
   it { should respond_to(:password_confirmation)}
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
-  it { should respond_to(:microposts)}
+  it { should respond_to(:reviews)}
   it { should respond_to(:feed) }
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
@@ -138,44 +138,44 @@ describe User do
     its(:remember_token) { should_not be_blank }
   end
 
-  describe "micropost associations" do
+  describe "review associations" do
     before { @user.save }
-    let!(:older_micropost) do
-      FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
+    let!(:older_review) do
+      FactoryGirl.create(:review, user: @user, created_at: 1.day.ago)
     end
-    let!(:newer_micropost) do
-      FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
-    end
-
-
-    it "should have the right microposts in the right order" do
-      @user.microposts.should == [newer_micropost, older_micropost]
+    let!(:newer_review) do
+      FactoryGirl.create(:review, user: @user, created_at: 1.hour.ago)
     end
 
-    it "should destroy associated microposts" do
-      microposts = @user.microposts
+
+    it "should have the right reviews in the right order" do
+      @user.reviews.should == [newer_review, older_review]
+    end
+
+    it "should destroy associated reviews" do
+      reviews = @user.reviews
       @user.destroy
-      microposts.each do |micropost|
-        Micropost.find_by_id(micropost.id).should be_nil
+      reviews.each do |review|
+        Review.find_by_id(review.id).should be_nil
       end
     end
 
     describe "status" do
       let(:unfollowed_post) do
-        FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+        FactoryGirl.create(:review, user: FactoryGirl.create(:user))
       end
       let(:followed_user) { FactoryGirl.create(:user) }
 
       before do
         @user.follow!(followed_user)
-        3.times { FactoryGirl.create(:micropost, user: @user) }
+        3.times { FactoryGirl.create(:review, user: @user) }
       end
-      its(:feed) { should include(newer_micropost) }
-      its(:feed) { should include(older_micropost) }
+      its(:feed) { should include(newer_review) }
+      its(:feed) { should include(older_review) }
       its(:feed) { should_not include(unfollowed_post) }
       its(:feed) do
-        followed_user.microposts.each do |micropost|
-          should include(micropost)
+        followed_user.reviews.each do |review|
+          should include(review)
         end
       end
     end

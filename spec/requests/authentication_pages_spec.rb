@@ -61,7 +61,7 @@ describe "Authentication" do
 
       describe "in the Users controller" do
 
-        describe "in the Microposts controller" do
+        describe "in the Reviews controller" do
 
           describe "visiting the following page" do
             before { visit following_user_path(user) }
@@ -75,12 +75,12 @@ describe "Authentication" do
         end
 
         describe "submitting to the create action" do
-          before { post microposts_path }
+          before { post reviews_path }
           specify { response.should redirect_to(signin_path) }
         end
 
         describe "submitting to the destroy action" do
-          before { delete micropost_path(FactoryGirl.create(:micropost)) }
+          before { delete review_path(FactoryGirl.create(:review)) }
           specify { response.should redirect_to(signin_path) }
         end
       end

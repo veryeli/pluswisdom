@@ -9,7 +9,7 @@ FactoryGirl.define do
       admin true
     end
   end
-    factory :micropost do
+    factory :review do
       content "Lorem Ipsum" * 50
       article_title "Lorem Lorem"
       user

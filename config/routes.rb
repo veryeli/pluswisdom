@@ -8,7 +8,7 @@ SampleApp::Application.routes.draw do
   end
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts do
+  resources :reviews do
     member { post :vote }
   end
   resources :relationships, only: [:create, :destroy]

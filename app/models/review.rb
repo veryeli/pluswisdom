@@ -1,4 +1,4 @@
-class Micropost < ActiveRecord::Base
+class Review < ActiveRecord::Base
   attr_accessible :article_title, :content, :tag_list
   belongs_to :user
   acts_as_taggable
@@ -8,7 +8,7 @@ class Micropost < ActiveRecord::Base
   has_reputation :votes, source: :user, aggregated_by: :sum
 
 
-  default_scope order: 'microposts.created_at DESC'
+  default_scope order: 'reviews.created_at DESC'
 
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships
