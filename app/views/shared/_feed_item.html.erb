@@ -2,6 +2,7 @@
   <%= link_to gravatar_for(feed_item.user), feed_item.user %>
     <span class="user">
       <%= link_to feed_item.user.name, feed_item.user %>
+      +idx: <%= feed_item.user.reputation_for(:votes).to_i %>
     </span>
    <%= render partial: 'reviews/review', :object=> feed_item%>
 </li>

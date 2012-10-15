@@ -10,8 +10,10 @@ class StaticPagesController < ApplicationController
   end
 
   def explore
-
+    todo = "Fix this - it isn't sorting"
+    @feed_items = Review.paginate(page: params[:page]).find_with_reputation(:votes, :all, order: 'votes desc')
   end
+
 
   def help
   end

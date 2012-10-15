@@ -5,8 +5,7 @@ class Review < ActiveRecord::Base
   validates :user_id, presence: true
   validates :content, presence: true, length: {minimum: 140}
   validates :article_title, presence: true
-  has_reputation :votes, source: :user, aggregated_by: :sum
-
+  has_reputation :votes, source: :user
 
   default_scope order: 'reviews.created_at DESC'
 
@@ -16,8 +15,5 @@ class Review < ActiveRecord::Base
     where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
           user_id: user.id)
   end
-
-
-
 
 end

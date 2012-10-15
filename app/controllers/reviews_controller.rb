@@ -1,12 +1,12 @@
 class ReviewsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy, :edit]
+  before_filter :signed_in_user, only: [:create, :destroy, :edit, :vote]
   before_filter :correct_user, only: [:destroy, :edit]
 
   def index
     if params[:tag]
-      @articles = Article.tagged_with(params[:tag])
+      @reviews = Review.tagged_with(params[:tag])
     else
-      @articles = Article.all
+      @reviews = Review.all
     end
   end
 
@@ -38,6 +38,14 @@ class ReviewsController < ApplicationController
       render 'static_pages/home'
     end
   end
+
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @review = Review.find(params[:id])
+    @review.add_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thank you for voting!"
+  end
+
 
   private
 

@@ -1,14 +1,32 @@
 <li>
   <span class="articletitle"><%=review.article_title%></span>
-  <span class="content"><%= review.content %></span>
+
+  <div class="content" id="review<%=review.id%>">
+    <span class="shortcontent" id="<%=review.id%>b"><%= truncate(review.content, length:140) %></span>
+    <span class="showmore">
+      <a onclick="showMore('#review<%=review.id%>');">...</a>
+    </span>
+    <span class="allcontent"><%= review.content %></span>
+  </div>
   <span class="tags"> Tags: <%=raw review.tag_list.map {|t| link_to t, tag_path(t)}.join(', ')%>
   <span class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago.
   </span>
+
+  <span class="votecount"><%= pluralize review.reputation_for(:votes).to_i, "vote" %></span>
+
   <% if current_user?(review.user) %>
     <%= link_to "delete", review, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: review.content %>
-  <%= link_to "edit", edit_review_path(review) %>
-  <% end %>
+    <%= link_to "edit", edit_review_path(review) %>
+  <% elsif signed_in? and not Review.evaluated_by(:votes, current_user).include? review%>
+  <span class="votes">
+    <em>
+    | <%= link_to "up", vote_review_path(review, type: "up"), method: "post" %>
+    | <%= link_to "down", vote_review_path(review, type: "down"), method: "post" %>
+    </em>
+  </span>
+  <%end%>
+
 </li>
