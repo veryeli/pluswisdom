@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20121012220529) do
     t.string   "article_title"
   end
 
-  add_index "reviews", ["user_id", "created_at"], :name => "index_reviews_on_user_id_and_created_at"
+  add_index "reviews", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
 
   create_table "rs_evaluations", :force => true do |t|
     t.string   "reputation_name"

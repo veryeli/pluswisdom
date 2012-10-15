@@ -1,4 +1,4 @@
-class AddArticleTitleToReviews < ActiveRecord::Migration
+class AddArticleTitleToMicroposts < ActiveRecord::Migration
   def change
     add_column :microposts, :article_title, :string
   end
