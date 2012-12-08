@@ -13,6 +13,8 @@ SampleApp::Application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
 
+  match '/' => 'blogs#show', :constraints => { :subdomain => /.+/ }
+  
   root  to: 'static_pages#home'
 
   match '/signup', to: 'users#new'
