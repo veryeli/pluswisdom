@@ -1,0 +1,5 @@
+<% if @blogs.any? %>
+  <ol class="Blog entries">
+    <%= render partial: 'blogs/blog', collection: @blogs %>
+  </ol>
+<% end %>

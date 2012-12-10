@@ -21,6 +21,11 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def blog
+    @blogs = Blog.all
+  end
+
+
   def contact
   end
 
