@@ -28,4 +28,5 @@ SampleApp::Application.routes.draw do
   match '/explore', to: 'static_pages#explore'
   match '/ramblings',   to: 'static_pages#blog'
   match '/blogs',   to: 'static_pages#blogs'
+  match '/newreview', to: 'static_pages#review'
 end

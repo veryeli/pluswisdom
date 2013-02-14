@@ -1,15 +1,12 @@
 <%= form_for(@review) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :article_title,
-     placeholder: "Title of the article" %>
-  </div>
-    <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new review..." %>
-  </div>
-  <div class="field">
-    <%= f.label :tag_list, "Tags (Seperated by commas)" %>
-    <%= f.text_field :tag_list %>
-  </div>
+  <input class="input-xxlarge" type="text" placeholder="Title of the article" name="review[article_title]">
+  </input>
+
+  <h3> compose a great new review</h3>
+  <textarea class="span7" rows="10" name="review[content]"></textarea>
+    <label for="review_tag_list">Tags (Seperated by commas)</label>
+    <input class="input-xxlarge" id="review_tag_list" name="review[tag_list]" value="" />
+    <p>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>

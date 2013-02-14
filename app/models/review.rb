@@ -1,6 +1,7 @@
 class Review < ActiveRecord::Base
   attr_accessible :article_title, :content, :tag_list
   belongs_to :user
+  has_one :article
   acts_as_taggable
   validates :user_id, presence: true
   validates :content, presence: true, length: {minimum: 140}

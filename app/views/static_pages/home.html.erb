@@ -8,7 +8,7 @@
         <%= render 'shared/stats' %>
       </section>
       <section>
-        <%= render 'shared/review_form' %>
+        <%= render 'shared/new_review' %>
       </section>
     </aside>
      <div class="span8">
@@ -16,11 +16,13 @@
       <%= render 'shared/feed' %>
     </div>
   </div>
+
+  
 <% else %>
 <div class="center hero-unit">
-  <h1>Welcome Home Sad Loris</h1>
+  <h1>Welcome to +wisdom</h1>
   <h2>
-    You don't have to be a Sad Loris any more!
+    A site for deep reflection and snarky commentary on the frontier of knowledge.
   </h2>
   <%= link_to "get pluswisdom now!", signup_path,
     class: "btn btn-large btn-primary" %>

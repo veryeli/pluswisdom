@@ -25,6 +25,9 @@ class StaticPagesController < ApplicationController
     @blogs = Blog.all
   end
 
+  def review
+    @review  = current_user.reviews.build
+  end
 
   def contact
   end
